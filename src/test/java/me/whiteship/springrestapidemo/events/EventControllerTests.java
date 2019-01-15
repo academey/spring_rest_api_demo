@@ -65,7 +65,7 @@ public class EventControllerTests {
 	}
 
 	@Test
-	public void createEvent_BadRequest() throws Exception {
+	public void createEvent_Bad_Request() throws Exception {
 		Event event = Event.builder().name("Spring").description("REST API Development")
 				.beginEnrollmentDateTime(LocalDateTime.of(2018, 12, 23, 14, 21))
 				.closeEnrollmentDateTime(LocalDateTime.of(2018, 12, 24, 14, 21))
@@ -90,6 +90,18 @@ public class EventControllerTests {
 				.andDo(print())
 				.andExpect(status().isBadRequest())
 		;
+	}
+
+	@Test
+	public void createEvent_Bad_Request_empty_input() throws Exception {
+		EventDto eventDto = EventDto.builder().build();
+
+		this.mockMvc.perform(post("/api/events").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.accept(MediaTypes.HAL_JSON)
+				.content(objectMapper.writeValueAsString(eventDto)
+				))
+				.andDo(print())
+				.andExpect(status().isBadRequest());
 	}
 
 }
