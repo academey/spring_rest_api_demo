@@ -65,6 +65,9 @@ public class EventControllerTests {
 				.andExpect(jsonPath("free", Matchers.equalTo(false)))
 				.andExpect(jsonPath("offline", Matchers.equalTo(true)))
 				.andExpect(jsonPath("eventStatus", Matchers.equalTo(EventStatus.DRAFT.name())))
+				.andExpect(jsonPath("_links.self").exists())
+				.andExpect(jsonPath("_links.query-events").exists())
+				.andExpect(jsonPath("_links.update-event").exists())
 		;
 	}
 
