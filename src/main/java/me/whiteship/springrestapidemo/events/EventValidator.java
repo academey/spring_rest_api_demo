@@ -3,7 +3,6 @@ package me.whiteship.springrestapidemo.events;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Component

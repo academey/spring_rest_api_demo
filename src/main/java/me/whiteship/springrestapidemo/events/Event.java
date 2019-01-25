@@ -1,6 +1,7 @@
 package me.whiteship.springrestapidemo.events;
 
 import lombok.*;
+import me.whiteship.springrestapidemo.accounts.Account;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class Event {
 
 	@Enumerated(EnumType.STRING)
 	private EventStatus eventStatus = EventStatus.DRAFT;
+
+	@ManyToOne
+	private Account manager;
 
 	public void update() {
 		this.free = this.basePrice == 0 && this.maxPrice == 0;
